@@ -38,10 +38,29 @@ router.get('/:savedLocationId', verifyToken, async (req, res) => {
         }
 
         const location = await Location.findById(req.params.savedLocationId)
+
+        if (!location) return res.status(404).send('Location not found.')
         
-        return res.status(200).json({ location })
+        return res.status(200).json(location)
     } catch (err) {
-        console.log(err)
+        res.status(500).json({ err: err.message})
+    }
+})
+
+router.put('/:savedLocationId', verifyToken, async (req, res) => {
+    try {
+        const location = await Location.findById(req.params.savedLocationId)
+
+        if (!location.owner.equals(req.user._id)) {
+            return res.status(403).send('You are not allowed to do that!')
+        }
+
+        const updatedLocation = await Location.findByIdAndUpdate(req.params.savedLocationId, req.body, { new: true })
+        updatedLocation._doc.owner = req.user
+
+        res.status(200).json(updatedLocation)
+    } catch (err) {
+        res.status(500).json({ err: err.message })
     }
 })
 
