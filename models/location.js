@@ -18,7 +18,7 @@ const locationSchema = new mongoose.Schema({
     required: true,
     },
     owner: {
-    type: mongoose.Schema.Types.objectId, 
+    type: mongoose.Schema.Types.ObjectId, 
     ref: 'User',
     },
     lat: Number,
