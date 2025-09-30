@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
-const User = require('../models/user');
 const Location = require('../models/location')
 
 const verifyToken = require('../middleware/verify-token');
@@ -37,7 +36,7 @@ router.get('/:savedLocationId', verifyToken, async (req, res) => {
             return res.status(403).json({ err: "Unauthorized"});
         }
 
-        const location = await Location.findById(req.params.savedLocationId)
+        const location = await Location.findById(req.params.savedLocationId).populate('owner')
 
         if (!location) return res.status(404).send('Location not found.')
         
@@ -70,12 +69,10 @@ router.put('/:savedLocationId', verifyToken, async (req, res) => {
 router.delete('/:savedLocationId', verifyToken, async (req, res) => {
     try {
         const deletedLocation = await Location.findByIdAndDelete(req.params.savedLocationId);
-        // console.log(deletedLocation);
         if (!deletedLocation) {
             res.status(404);
             throw new Error('Location not Found');
         } return res.status(200).json({deletedLocation});
-        // return res.status(200).json({ message: 'This is the delete route!' });
     } catch (err) {
         if (res.statusCode === 404) {
             res.json({ err: err.message });
