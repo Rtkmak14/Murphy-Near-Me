@@ -37,7 +37,7 @@ router.get('/:savedLocationId', verifyToken, async (req, res) => {
             return res.status(403).json({ err: "Unauthorized"});
         }
 
-        const location = await Location.findById(req.params.savedLocationId)
+        const location = await Location.findById(req.params.savedLocationId).populate('owner')
 
         if (!location) return res.status(404).send('Location not found.')
         
