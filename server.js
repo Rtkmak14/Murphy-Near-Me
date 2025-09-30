@@ -27,7 +27,7 @@ app.use(logger('dev'));
 // Routes
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
-app.use('/users/:userId/saved-locations', savedLocationRouter)
+app.use('/users/:userId/saved-location', savedLocationRouter)
 
 // Start the server and listen on port 3000
 app.listen(3000, () => {
