@@ -1,30 +1,16 @@
-# Express JWT Auth Template
+# Murphy Near Me API
 
-## About
+This is the back-end repository for **Murphy Near Me**, a full-stack location-based app that helps users find nearby Murphy USA gas stations and manage saved addresses.
 
-This repo is an Express JWT Auth template meant to be paired with a front-end app utilizing JWT tokens.
+For full details on the project, including screenshots, planning materials, and front-end code, visit the [Murphy Near Me Front-End Repository](https://github.com/Rtkmak14/Murphy-Near-Me-Front-End).
 
-## Getting started
+## Technologies Used
 
-Fork and clone this repository to your local machine.
+- Node.js  
+- Express.js  
+- MongoDB  
+- Mongoose  
+- RESTful API architecture  
+- JSON Web Tokens (JWT) for authentication  
+- CORS and middleware configuration
 
-After moving into the cloned directory, run `npm i` to download the dependencies.
-
-Create a `.env` file in the root of the project:
-
-```bash
-touch .env
-```
-
-and add your MongoDB URI and a secret JWT string to it. Your MongoDB URI will look something like the first entry, but with your username and password:
-
-```plaintext
-MONGODB_URI=mongodb+srv://<username>:<password>@sei.azure.mongodb.net/myApp?retryWrites=true
-JWT_SECRET=supersecret
-```
-
-Start the app in your terminal with:
-
-``` sh
-npm run dev
-```
