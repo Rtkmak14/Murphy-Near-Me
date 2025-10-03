@@ -29,7 +29,9 @@ app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/users/:userId/saved-locations', savedLocationRouter)
 
+const port = process.env.PORT? process.env.PORT: "3000"
+
 // Start the server and listen on port 3000
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('The express app is ready!');
 });
